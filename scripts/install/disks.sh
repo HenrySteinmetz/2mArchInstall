@@ -22,12 +22,14 @@ then
   sgdisk -n 2::+300M --typecode=2:ef00 --change-name=2:'EFIBOOT' /dev/${Disk} # partition 2 (UEFI Boot Partition)
   sgdisk -n 3::-0 --typecode=3:8300 --change-name=3:'ROOT' /dev/${Disk} # partition 3 (Root), default start, remaining
   if [[ ! -d "/sys/firmware/efi" ]]; then # Checking for bios system
-    sgdisk -A 1:set:2 ${Disk}
+    sgdisk -A 1:set:2 /dev/${Disk}
+    export Boot="bios"
+  else
+    export Boot="efi"
   fi
   partprobe ${DISK} # reread partition table to ensure it is correct
-  lsblk
-  #mkfs.${Filesystem} /dev/${Drive}2
-
+  mkfs.${Filesystem} /dev/${Drive}2
+  mkfs.vfat -F 32 /dev/${Drive}1
 else
   echo "Error: Invalid install type"
   break
