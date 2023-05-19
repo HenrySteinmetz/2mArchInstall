@@ -145,12 +145,13 @@ do
         ;;
       esac
       export InstallType=${install_type}
+      break
     ;;
 
     automatic)
       export InstallType=${install_type}
+      break
     ;;
-
   esac
 done
 
