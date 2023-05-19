@@ -27,9 +27,9 @@ then
   else
     export Boot="efi"
   fi
-  partprobe ${DISK} # reread partition table to ensure it is correct
-  mkfs.${Filesystem} /dev/${Drive}2
-  mkfs.vfat -F 32 /dev/${Drive}1
+  partprobe ${Disk} # reread partition table to ensure it is correct
+  mkfs.${Filesystem} /dev/${Disk}2
+  mkfs.vfat -F 32 /dev/${Disk}1
 else
   echo "Error: Invalid install type"
   break
