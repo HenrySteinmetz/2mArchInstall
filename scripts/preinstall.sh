@@ -74,6 +74,19 @@ do
   esac
 done
 
+# Credit: Cong Nguyen https://superuser.com/questions/195598/test-if-element-is-in-array-in-bash
+function in_array {
+  ARRAY=$2
+  for e in ${ARRAY[*]}
+  do
+    if [[ "$e" == "$1" ]]
+    then
+      return 0
+    fi
+  done
+  return 1
+}
+
 echo "Please choose how to format your selected drive"
 
 select install_type in manual automatic
@@ -91,7 +104,8 @@ do
       done
       select root_partition in "${PartitionArray[@]}"
       do
-        if [[ "${PartitonArray[@]}" =~ "${root_partition}" ]]; then
+        if in_array "${root_partition}" "${my_array[*]}"
+        then
           mkfs.${Filesystem} /dev/${root_partition}
           break
         else
