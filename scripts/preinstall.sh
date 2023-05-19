@@ -78,7 +78,7 @@ echo "Please choose how to format your selected drive"
 
 select install_type in manual automatic
 do
-  case install_type in
+  case $install_type in
     manual)
       X=0
       cfdisik
