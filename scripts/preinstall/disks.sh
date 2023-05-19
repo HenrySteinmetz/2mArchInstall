@@ -1,16 +1,8 @@
 #!/bin/bash
-# This script sets up mirrors and basic packages for the later installation
+# All disk options
 # Discord: Handy#1684
+# Github: https://github.com/HenrySteinmetz
 
-echo -ne "
-######################################################
-/  Setting up mirrors and installing basic packages  \\
-######################################################
-"
-
-pacman -Sy --noconfirm base
-pacman -S --noconfirm reflector rsync curl
-reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 clear && echo -ne "
 #######################################################
@@ -123,7 +115,7 @@ do
           echo "Not a valid partition please choose a partition from the list"
         fi
       done
-      read -p "Do you have a home partition? y/N" YesNo
+      read -p "Do you have a home partition? (y/N) " YesNo
       case $YesNo in
         yY)
           select home_partition in "${PartitionArray[@]}"
@@ -136,8 +128,10 @@ do
             echo "Not a valid partition please choose a partition from the list"
             fi
           done
+          export Home="Yes"
         ;;
         nN)
+          export Home="No"
           break
         ;;
         *)
@@ -155,3 +149,4 @@ do
   esac
 done
 
+bash ../install/disks.sh
