@@ -8,7 +8,7 @@ echo -ne "
 ######################################################
 "
 
-pacman -Sy base
+pacman -Sy --noconfirm base
 pacman -S --noconfirm reflector rsync curl
 reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
@@ -79,7 +79,7 @@ echo "Please choose how to format your selected drive"
 select install_type in manual automatic
 do
   case install_type in
-    1)
+    manual)
       X=0
       cfdisik
       echo "Which partition is the root partition?"
