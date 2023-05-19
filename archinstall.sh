@@ -9,4 +9,4 @@ CONFIGS_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd 
 PACKAGES_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"/packages
 set +a
 
-./scripts/preinstall.sh
+./scripts/preinstall/disks.sh

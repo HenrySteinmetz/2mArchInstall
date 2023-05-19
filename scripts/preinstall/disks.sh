@@ -36,12 +36,12 @@ do
     read -p ":" correct 
     case $correct in
       y)
-        Disk=${opt}
+        export Disk=${opt}
         break
       ;;
       
       Y)
-        Disk=${opt}
+        export Disk=${opt}
         break
       ;;
       
@@ -57,15 +57,15 @@ select fs in btrfs ext4 xfs
 do
   case $fs in
     btrfs)
-      Filesystem=btrfs
+      export Filesystem=btrfs
       break
     ;;
     ext4)
-      Filesystem=ext4
+      export Filesystem=ext4
       break
     ;;
     xfs)
-      Filesystem=xfs
+      export Filesystem=xfs
       break
     ;;
     *)
@@ -106,15 +106,51 @@ do
       do
         if in_array "${root_partition}" "${PartitionArray[*]}"
         then
-          mkfs.${Filesystem} /dev/${root_partition}
+          export RootPartition=${root_partition}
           break
         else
           echo "Not a valid partition please choose a partition from the list"
         fi
-
-
       done
-    ;;  
+      echo "Which partition is the boot partition?"
+      select boot_partition in "${PartitionArray[@]}"
+      do
+        if in_array "${boot_partition}" "${PartitionArray[*]}"
+        then
+          export BootPartition=${boot_partition}
+          break
+        else
+          echo "Not a valid partition please choose a partition from the list"
+        fi
+      done
+      read -p "Do you have a home partition? y/N" YesNo
+      case $YesNo in
+        yY)
+          select home_partition in "${PartitionArray[@]}"
+          do
+            if in_array "${home_partition}" "${PartitionArray[*]}"
+            then
+              export HomePartition=${home_partition}
+              break
+            else
+            echo "Not a valid partition please choose a partition from the list"
+            fi
+          done
+        ;;
+        nN)
+          break
+        ;;
+        *)
+          read -p "Please enter a valid response(y/N)" YesNo
+        ;;
+      esac
+      export InstallType=${install_type}
+    ;;
+
+    automatic)
+      export InstallType=${install_type}
+    ;;
+
   esac
 done
 
