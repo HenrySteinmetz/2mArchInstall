@@ -2,15 +2,39 @@
 # Discord: Handy#1684
 # Github: https://github.com/HenrySteinmetz
 
+createsubvolumes () {
+    btrfs subvolume create /mnt/@
+    btrfs subvolume create /mnt/@home
+    btrfs subvolume create /mnt/@var
+    btrfs subvolume create /mnt/@tmp
+    btrfs subvolume create /mnt/@.snapshots
+}
+
 if [[ "$InstallType" == "manual" ]]
 then
   
   mkfs.${Filesystem} /dev/${RootPartition}
   mkfs.vfat -F 32 /dev/${RootPartition}
+  
+  if [[ "${Filesystem}" == "btrfs" ]]
+  then
+
+    createsubvolumes
+    mount -o subvol=@home /dev/${RootPartition} /mnt/home
+    mount -o subvol=@tmp /dev/${RootPartition} /mnt/tmp
+    mount -o subvol=@var /dev/${RootPartition} /mnt/var
+    mount -o subvol=@.snapshots /dev/${RootPartition} /mnt/.snapshots
+  fi
+  
+  mount /dev/$[RootPartition] /mnt
+  mount --mkdir /dev/${BootPartition} /mnt/boot
+
   if [[ "$Home" == "yes" ]]
   then
     mkfs.${Filesystem} /dev/${HomePartition}
+    mount --mkdir /dev/${HomePartition}
   fi
+
 
 elif [[ "$InstallType" == "automatic" ]]
 then
@@ -28,9 +52,24 @@ then
     export Boot="efi"
   fi
   partprobe ${Disk} # reread partition table to ensure it is correct
+  
   mkfs.${Filesystem} /dev/${Disk}2
   mkfs.vfat -F 32 /dev/${Disk}1
+  
+  if [[ "${Filesystem}" == "btrfs" ]]
+  then
+    createsubvolumes
+    mount -o subvol=@home /dev/${Drive}2 /mnt/home
+    mount -o subvol=@tmp /dev/${Drive}2 /mnt/tmp
+    mount -o subvol=@var /dev/${Drive}2 /mnt/var
+    mount -o subvol=@.snapshots /dev/${Drive}2 /mnt/.snapshots
+  fi
+
+  mount /dev/${Disk}2 /mnt
+  mount --mkdir /dev/${Disk}1 /mnt/boot 
+  
 else
   echo "Error: Invalid install type"
   break
 fi
+genfstab -U /mnt >> /mnt/etc/fstab

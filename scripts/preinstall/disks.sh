@@ -27,12 +27,7 @@ do
     echo "You chose /dev/${opt} is this choice correct? (y/N)"
     read -p ":" correct 
     case $correct in
-      y)
-        export Disk=${opt}
-        break
-      ;;
-      
-      Y)
+      y|Y)
         export Disk=${opt}
         break
       ;;
@@ -117,7 +112,7 @@ do
       done
       read -p "Do you have a home partition? (y/N) " YesNo
       case $YesNo in
-        yY)
+        y|Y)
           select home_partition in "${PartitionArray[@]}"
           do
             if in_array "${home_partition}" "${PartitionArray[*]}"
@@ -130,7 +125,7 @@ do
           done
           export Home="Yes"
         ;;
-        nN)
+        n|N)
           export Home="No"
           break
         ;;
@@ -148,5 +143,3 @@ do
     ;;
   esac
 done
-
-bash ${INSTALL_SCRIPT_DIR}/disks.sh
