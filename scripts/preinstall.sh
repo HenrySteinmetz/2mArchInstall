@@ -104,7 +104,7 @@ do
       done
       select root_partition in "${PartitionArray[@]}"
       do
-        if in_array "${root_partition}" "${my_array[*]}"
+        if in_array "${root_partition}" "${PartitionArray[*]}"
         then
           mkfs.${Filesystem} /dev/${root_partition}
           break
