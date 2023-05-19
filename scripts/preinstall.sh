@@ -81,7 +81,7 @@ do
   case $install_type in
     manual)
       X=0
-      cfdisik
+      cfdisk
       echo "Which partition is the root partition?"
       for i in $(lsblk | awk '{print $1}' | sed 's/[\─└├│]//g' | grep ${Disk} | tail -n +2 )
       do
