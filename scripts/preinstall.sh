@@ -11,6 +11,7 @@ echo -ne "
 pacman -Sy base
 pacman -S --noconfirm reflector rsync curl
 reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
 clear && echo -ne "
 #######################################################
 /           Disk selection and formating              \\
@@ -18,6 +19,8 @@ clear && echo -ne "
 
 Choose one of the following drives(!NOTE ALL DATA WILL BE IRREPEREBLY WIPED OFF OF THE SELECTED DRIVE):
 "
+
+# N = Index of array
 N=0
 for i in $(lsblk | awk '{print $1}' | sed '/[\─└├│]/d' | awk NF | tail -n +2 ); do
   array[$N]="$i"
@@ -50,18 +53,18 @@ do
 done
 
 echo "Please choose your desired filesystem"
-select fs in "btrfs" "ext4 recommended" "xfs"
+select fs in btrfs ext4 xfs
 do
   case $fs in
-    1)
+    btrfs)
       Filesystem=btrfs
       break
     ;;
-    2)
+    ext4)
       Filesystem=ext4
       break
     ;;
-    3)
+    xfs)
       Filesystem=xfs
       break
     ;;
@@ -75,7 +78,6 @@ echo "Please choose how to format your selected drive"
 
 select install_type in manual automatic
 do
-
   case install_type in
     1)
       X=0
@@ -88,20 +90,14 @@ do
       done
       select root_partition in "${PartitionArray[@]}"
       do
-        PartitionArrayLength=${#a[@]}
-        inrange=0
-        for ((i=1;i<=PartitionArrayLength;i++))
-        do
-          if [ $root_partition = $i ]
-          then
-            inrange=1
-          fi
-        done
-        if [ $inrange = 1 ]
-        then
-         echo "succes"
-         #mkfs.${Filesystem} /dev/${}
+        if [[ " $PartitonArray[*]} " =~ " ${root_partition} " ]]; then
+          mkfs.${Filesystem} /dev/${root_partition}
+          break
+        else
+          echo "Not a valid partition please choose a partition from the list"
         fi
+
+
       done
     ;;  
   esac
