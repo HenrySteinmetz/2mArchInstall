@@ -82,6 +82,7 @@ do
     manual)
       X=0
       cfdisk
+      clear
       echo "Which partition is the root partition?"
       for i in $(lsblk | awk '{print $1}' | sed 's/[\─└├│]//g' | grep ${Disk} | tail -n +2 )
       do
@@ -90,7 +91,7 @@ do
       done
       select root_partition in "${PartitionArray[@]}"
       do
-        if [[ " $PartitonArray[*]} " =~ " ${root_partition} " ]]; then
+        if [[ "${PartitonArray[@]}" =~ "${root_partition}" ]]; then
           mkfs.${Filesystem} /dev/${root_partition}
           break
         else
