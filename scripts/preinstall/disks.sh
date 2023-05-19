@@ -149,4 +149,4 @@ do
   esac
 done
 
-bash ../install/disks.sh
+bash ${INSTALL_SCRIPT_DIR}/install/disks.sh
