@@ -75,6 +75,7 @@ do
   case $install_type in
     manual)
       X=0
+      umount -a > /dev/null
       cfdisk
       clear
       echo "Which partition is the root partition?"
