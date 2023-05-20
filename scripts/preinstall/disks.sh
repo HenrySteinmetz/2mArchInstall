@@ -78,7 +78,7 @@ do
       cfdisk
       clear
       echo "Which partition is the root partition?"
-      for i in $(lsblk | awk '{print $1}' | sed 's/[\─└├│]//g' | grep ${Disk} | tail -n +2 )
+      for i in $(lsblk | awk '{print $1}' | sed 's/[\─└├│]//g' | grep ${Drive} | tail -n +2 )
       do
         PartitionArray[$X]="$i"
         let "X= $X + 1"
