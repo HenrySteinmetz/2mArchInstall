@@ -36,8 +36,7 @@ then
   fi
 
 
-elif [[ "$PartioningStyle" == "automatic" ]]
-then
+else
   # credit ChrisTitusTech https://github.com/ChrisTitusTech/ArchTitus
   umount -A --recursive /mnt
   sgdisk -Z ${Disk}
@@ -67,9 +66,5 @@ then
 
   mount /dev/${Disk}2 /mnt
   mount --mkdir /dev/${Disk}1 /mnt/boot 
-  
-else
-  echo "Error: Invalid partition management option"
-  break
 fi
 genfstab -U /mnt >> /mnt/etc/fstab
