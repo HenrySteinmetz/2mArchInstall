@@ -5,7 +5,7 @@ select bootloader in "grub" "systemd-boot"
 do
   case $bootloader in
     grub|systemd-boot)
-      echo "BootLoader=${bootloader}" >> ${SCRIPT_DIR}/vars.sh
+      echo "BootLoader=${bootloader}" >> ${SCRIPT_DIR}/vars.conf
       break
     ;;
     *)

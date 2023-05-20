@@ -3,7 +3,7 @@
 # Discord: Handy#1684
 # Github: https://github.com/HenrySteinmetz
 
-source ${SCRIPT_DIR}/vars.sh
+source ${SCRIPT_DIR}/vars.conf
 
 clear
 echo -ne "

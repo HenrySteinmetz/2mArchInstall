@@ -1,7 +1,7 @@
 #!/bin/bash
 # post chroot
 
-source vars.sh
+source vars.conf
 
 ./config.sh
 ./locale.sh
