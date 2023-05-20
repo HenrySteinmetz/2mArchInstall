@@ -16,13 +16,13 @@ chmod +x scripts/preinstall/browser.sh
 chmod +x scripts/preinstall/de.sh
 chmod +x scripts/install/prechroot/chroot.sh
 chmod +x scripts/install/prechroot/disks.sh
-chmod +x scripts/insatll/postchroot/config.sh
-chmod +x scripts/insatll/postchroot/graphicsdriver.sh
-chmod +x scripts/insatll/postchroot/init.sh
-chmod +x scripts/insatll/postchroot/locale.sh
-chmod +x scripts/insatll/postchroot/pacman.sh
-chmod +x scripts/insatll/postchroot/ucode.sh
-chmod +x scripts/insatll/postchroot/user.sh
+chmod +x scripts/install/postchroot/config.sh
+chmod +x scripts/install/postchroot/graphicsdriver.sh
+chmod +x scripts/install/postchroot/init.sh
+chmod +x scripts/install/postchroot/locale.sh
+chmod +x scripts/install/postchroot/pacman.sh
+chmod +x scripts/install/postchroot/ucode.sh
+chmod +x scripts/install/postchroot/user.sh
 
 ./scripts/preinstall/dependencies.sh
 ./scripts/preinstall/disks.sh
