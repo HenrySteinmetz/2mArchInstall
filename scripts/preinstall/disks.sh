@@ -30,7 +30,6 @@ do
     read -p ":" correct 
     case $correct in
       y|Y)
-        export Disk=${opt}
         echo "Disk=${opt}" >> ${SCRIPT_DIR}/vars.conf
         break
       ;;
@@ -79,7 +78,7 @@ do
       cfdisk
       clear
       echo "Which partition is the root partition?"
-      for i in $(lsblk | awk '{print $1}' | sed 's/[\─└├│]//g' | grep ${Drive} | tail -n +2 )
+      for i in $(lsblk | awk '{print $1}' | sed 's/[\─└├│]//g' | grep ${opt} | tail -n +2 )
       do
         PartitionArray[$X]="$i"
         let "X= $X + 1"
@@ -105,6 +104,7 @@ do
           echo "Not a valid partition please choose a partition from the list"
         fi
       done
+      echo $opt
       read -p "Do you have a home partition? (y/N) " YesNo
       case $YesNo in
         y|Y)
