@@ -6,9 +6,9 @@ do
   case $installtype in 
     full|minimal|xorg)
       export InstallType=${InstallType}
-      ./aurhelper.sh
-      ./de.sh
-      ./browser.sh
+      ./scripts/preinstall/aurhelper.sh
+      ./scripts/preinstall/de.sh
+      ./scripts/preinstall/browser.sh
       break
     ;;
     *)
