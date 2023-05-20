@@ -40,11 +40,6 @@ keyboard_layout_options=('us' 'by' 'ca' 'cf' 'cz' 'de' 'dk' 'es' 'et' 'fa' 'fi' 
 
 select keyboard_layout in "${keyboard_layout_options[@]}"
 do
-  if in_array $keyboard_layout "${keyboard_layout_options[@]}" 
-  then
-    export KeyboardLayout=$keyboard_layout
-    break
-  else
-    echo "Invalid keyboard layout"
-  fi
+  export KeyboardLayout=$keyboard_layout
+  break
 done
