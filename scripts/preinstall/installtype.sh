@@ -5,7 +5,7 @@ select installtype in full minimal xorg
 do
   case $installtype in 
     full|minimal|xorg)
-      export InstallType=${InstallType}
+      echo "InstallType=${InstallType}" >> ${SCRIPT_DIR}/vars.sh
       ./scripts/preinstall/aurhelper.sh
       ./scripts/preinstall/de.sh
       ./scripts/preinstall/browser.sh

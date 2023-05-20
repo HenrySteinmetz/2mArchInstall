@@ -5,7 +5,7 @@ select bootloader in "grub" "systemd-boot"
 do
   case $bootloader in
     grub|systemd-boot)
-      export BootLoader=${bootloader}
+      echo "BootLoader=${bootloader}" >> ${SCRIPT_DIR}/vars.sh
       break
     ;;
     *)

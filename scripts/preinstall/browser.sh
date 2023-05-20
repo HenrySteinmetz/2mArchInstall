@@ -4,7 +4,7 @@ select browser in brave chromium firefox chrome vivaldi
 do
   case $browser in 
     brave|chromium|firefox|chrome|vivaldi)
-    export Browser=${browser}
+      echo "Browser=${browser}" >> ${SCRIPT_DIR}/vars.sh
       break
     ;;
     *)

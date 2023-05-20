@@ -2,7 +2,7 @@
 clear
 echo "Please enter your user name"
 read -p ": " user_name
-export UserName=${user_name}
+echo "UserName=${user_name}" >> ${SCRIPT_DIR}/vars.sh
 
 password() {
   echo "Enter your password"
@@ -12,7 +12,7 @@ password() {
   
   if [[ "${password}" == "${password2}" ]]
   then
-    export Password=${password} 
+    echo "Password=${password}" >> ${SCRIPT_DIR}/vars.sh
   else
     password
   fi
@@ -21,4 +21,4 @@ password
 
 echo "Enter your hostname"
 read -p ": " hostname
-export Hostname=${hostname}
+echo "Hostname=${hostname}" >> ${SCRIPT_DIR}/vars.sh

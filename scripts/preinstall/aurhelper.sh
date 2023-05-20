@@ -5,7 +5,7 @@ select aur_helper in yay paru
 do
   case $aur_helper in
     yay|paru)
-      export AurHelper=${aur_helper}
+      echo "AurHelper=${aur_helper}" >> ${SCRIPT_DIR}/vars.sh
       break
     ;;
     *)

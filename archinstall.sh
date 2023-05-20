@@ -1,9 +1,9 @@
 #!/bin/bash
 # This script asks for general install type and initializes startup
 # Discord: Handy#1684
-
-export INSTALL_SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"/scripts/install
 export PREINSTALL_SCRIPTS_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"/scripts/preinstall
+export INSTALL_SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"/scripts/install
+export SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"/scripts
 
 
 chmod +x scripts/preinstall/dependencies.sh
@@ -23,6 +23,7 @@ chmod +x scripts/install/postchroot/locale.sh
 chmod +x scripts/install/postchroot/pacman.sh
 chmod +x scripts/install/postchroot/ucode.sh
 chmod +x scripts/install/postchroot/user.sh
+chmod +x scripts/install/vars.sh
 
 ./scripts/preinstall/dependencies.sh
 ./scripts/preinstall/disks.sh
@@ -30,5 +31,5 @@ chmod +x scripts/install/postchroot/user.sh
 ./scripts/preinstall/user.sh
 ./scripts/preinstall/bootloader.sh
 ./scripts/preinstall/installtype.sh
-./scripts/install/prechroot/disks.sh
-./scripts/install/prechroot/chroot.sh
+#./scripts/install/prechroot/disks.sh
+#./scripts/install/prechroot/chroot.sh

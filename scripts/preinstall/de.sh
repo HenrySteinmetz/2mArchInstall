@@ -5,7 +5,7 @@ select de in kde xfce gnome cinnamon mate hyprland i3 awesomewm bspwm dwm xmonad
 do
   case $de in 
     kde|xfce|gnome|cinnamon|mate|hyprland|i3|awesomewm|bspwm|dwm|xmonad)
-      export DesktopEnviorment=${de}
+      echo "DesktopEnviorment=${de}" >> ${SCRIPT_DIR}/vars.sh
       break
     ;;
     *)
