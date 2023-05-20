@@ -69,7 +69,7 @@ then
   mount --mkdir /dev/${Disk}1 /mnt/boot 
   
 else
-  echo "Error: Invalid install type"
+  echo "Error: Invalid partition management option"
   break
 fi
 genfstab -U /mnt >> /mnt/etc/fstab
