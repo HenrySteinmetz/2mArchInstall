@@ -31,5 +31,5 @@ chmod +x scripts/install/vars.sh
 ./scripts/preinstall/user.sh
 ./scripts/preinstall/bootloader.sh
 ./scripts/preinstall/installtype.sh
-#./scripts/install/prechroot/disks.sh
-#./scripts/install/prechroot/chroot.sh
+./scripts/install/prechroot/disks.sh
+./scripts/install/prechroot/chroot.sh

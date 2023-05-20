@@ -1,6 +1,8 @@
 #!/bin/bash
 # post chroot
 
+source vars.sh
+
 ./config.sh
 ./locale.sh
 ./user.sh
