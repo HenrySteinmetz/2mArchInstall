@@ -30,7 +30,7 @@ do
     read -p ":" correct 
     case $correct in
       y|Y)
-        echo "Disk=${opt}" >> ${SCRIPT_DIR}
+        echo "Disk=${opt}" >> ${SCRIPT_DIR}/vars.conf
         break
       ;;
       
@@ -46,7 +46,7 @@ select fs in btrfs ext4 xfs
 do
   case $fs in
     btrfs|ext4|xfs)
-      echo "Filesystem=${fs}" >> ${SCRIPT_DIR}
+      echo "Filesystem=${fs}" >> ${SCRIPT_DIR}/vars.conf
       break
     ;;
     *)
@@ -87,7 +87,7 @@ do
       do
         if in_array "${root_partition}" "${PartitionArray[*]}"
         then
-          echo "RootPartition=${root_partition}" >> ${SCRIPT_DIR}/vars.sh
+          echo "RootPartition=${root_partition}" >> ${SCRIPT_DIR}/vars.conf
           break
         else
           echo "Not a valid partition please choose a partition from the list"
@@ -98,7 +98,7 @@ do
       do
         if in_array "${boot_partition}" "${PartitionArray[*]}"
         then
-          echo "BootPartition=${boot_partition}" >> ${SCRIPT_DIR}/vars.sh
+          echo "BootPartition=${boot_partition}" >> ${SCRIPT_DIR}/vars.conf
           break
         else
           echo "Not a valid partition please choose a partition from the list"
@@ -111,7 +111,7 @@ do
           do
             if in_array "${home_partition}" "${PartitionArray[*]}"
             then
-              echo "HomePartition=${home_partition}" >> ${SCRIPT_DIR}/vars.sh
+              echo "HomePartition=${home_partition}" >> ${SCRIPT_DIR}/vars.conf
               break
             else
             echo "Not a valid partition please choose a partition from the list"
@@ -127,12 +127,12 @@ do
           read -p "Please enter a valid response(y/N)" YesNo
         ;;
       esac
-      echo "PartitioningStyle=${install_type}" >> ${SCRIPT_DIR}/vars.sh
+      echo "PartitioningStyle=${install_type}" >> ${SCRIPT_DIR}/vars.conf
       break
     ;;
 
     automatic)
-      echo "PartitioningStyle=${install_type}" >> ${SCRIPT_DIR}/vars.sh
+      echo "PartitioningStyle=${install_type}" >> ${SCRIPT_DIR}/vars.conf
       break
     ;;
   esac
