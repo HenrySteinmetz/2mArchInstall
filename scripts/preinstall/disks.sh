@@ -4,7 +4,8 @@
 # Github: https://github.com/HenrySteinmetz
 
 
-clear && echo -ne "
+clear
+echo -ne "
 #######################################################
 /           Disk selection and formating              \\
 #######################################################
@@ -43,16 +44,8 @@ echo "Please choose your desired filesystem"
 select fs in btrfs ext4 xfs
 do
   case $fs in
-    btrfs)
-      export Filesystem=btrfs
-      break
-    ;;
-    ext4)
-      export Filesystem=ext4
-      break
-    ;;
-    xfs)
-      export Filesystem=xfs
+    btrfs|ext4|xfs)
+      export Filesystem=${fs}
       break
     ;;
     *)
@@ -133,12 +126,12 @@ do
           read -p "Please enter a valid response(y/N)" YesNo
         ;;
       esac
-      export InstallType=${install_type}
+      export PartitioningStyle=${install_type}
       break
     ;;
 
     automatic)
-      export InstallType=${install_type}
+      export PartitioningStyle=${install_type}
       break
     ;;
   esac

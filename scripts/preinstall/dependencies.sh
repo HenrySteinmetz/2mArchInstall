@@ -9,6 +9,6 @@ echo -ne "
 #############################################################
 "
 
-pacman -Sy --noconfirm archlinux-keyring
+pacman -Sy --noconfirm --needed archlinux-keyring
+pacman -S --noconfirm --needed reflector rsync curl 
 reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-pacman -S --noconfirm reflector rsync curl 

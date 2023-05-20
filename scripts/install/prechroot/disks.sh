@@ -10,7 +10,7 @@ createsubvolumes () {
     btrfs subvolume create /mnt/@.snapshots
 }
 
-if [[ "$InstallType" == "manual" ]]
+if [[ "$PartioningStyle" == "manual" ]]
 then
   
   mkfs.${Filesystem} /dev/${RootPartition}
@@ -36,7 +36,7 @@ then
   fi
 
 
-elif [[ "$InstallType" == "automatic" ]]
+elif [[ "$PartioningStyle" == "automatic" ]]
 then
   # credit ChrisTitusTech https://github.com/ChrisTitusTech/ArchTitus
   umount -A --recursive /mnt
