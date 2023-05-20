@@ -22,10 +22,10 @@ then
   then
 
     createsubvolumes
-    mount -o subvol=@home /dev/${RootPartition} /mnt/home
-    mount -o subvol=@tmp /dev/${RootPartition} /mnt/tmp
-    mount -o subvol=@var /dev/${RootPartition} /mnt/var
-    mount -o subvol=@.snapshots /dev/${RootPartition} /mnt/.snapshots
+    mount --mkdir -o subvol=@home /dev/${RootPartition} /mnt/home
+    mount --mkdir -o subvol=@tmp /dev/${RootPartition} /mnt/tmp
+    mount --mkdir -o subvol=@var /dev/${RootPartition} /mnt/var
+    mount --mkdir -o subvol=@.snapshots /dev/${RootPartition} /mnt/.snapshots
   fi
   
   mount /dev/$[RootPartition] /mnt
@@ -60,10 +60,10 @@ else
   if [[ "${Filesystem}" == "btrfs" ]]
   then
     createsubvolumes
-    mount -o subvol=@home /dev/${Drive}2 /mnt/home
-    mount -o subvol=@tmp /dev/${Drive}2 /mnt/tmp
-    mount -o subvol=@var /dev/${Drive}2 /mnt/var
-    mount -o subvol=@.snapshots /dev/${Drive}2 /mnt/.snapshots
+    mount --mkdir -o subvol=@home /dev/${Drive}2 /mnt/home
+    mount --mkdir -o subvol=@tmp /dev/${Drive}2 /mnt/tmp
+    mount --mkdir -o subvol=@var /dev/${Drive}2 /mnt/var
+    mount --mkdir -o subvol=@.snapshots /dev/${Drive}2 /mnt/.snapshots
   fi
 
   mount /dev/${Disk}2 /mnt
