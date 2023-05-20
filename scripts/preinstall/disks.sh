@@ -30,6 +30,7 @@ do
     read -p ":" correct 
     case $correct in
       y|Y)
+        export Disk=${opt}
         echo "Disk=${opt}" >> ${SCRIPT_DIR}/vars.conf
         break
       ;;
