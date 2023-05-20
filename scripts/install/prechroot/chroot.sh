@@ -6,4 +6,4 @@ mkdir -p /mnt/root/2mArchInstall
 cp -r ${INSTALL_SCRIPT_DIR}/postchroot/ /mnt/root/2mArchInstall
 cp ${SCRIPT_DIR}/vars.sh /mnt/root/2mArchInstall/postchroot
 pacstrap -K /mnt base linux linux-firmware zsh
-arch-chroot /mnt /root/2mArchInstall/postchroot/init.sh
+arch-chroot /mnt bash /root/2mArchInstall/postchroot/init.sh
