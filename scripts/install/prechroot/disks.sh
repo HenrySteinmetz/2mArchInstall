@@ -43,13 +43,3 @@ else
   mount --mkdir /dev/${Disk}1 /mnt/boot 
 fi
 
-if [[ ! -e /mnt/etc ]]
-then
-  mkdir /mnt/etc
-  touch /mnt/etc/fstab
-elif [[ ! -e /mnt/etc/fstab ]]
-then
-  touch /mnt/etc/fstab
-fi
-
-genfstab -U /mnt >> /mnt/etc/fstab
