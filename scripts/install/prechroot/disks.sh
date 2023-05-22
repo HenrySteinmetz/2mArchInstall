@@ -7,7 +7,7 @@ source ${SCRIPT_DIR}/vars.conf
 if [[ "$PartioningStyle" == "manual" ]]
 then
   
-  mkfs.${Filesystem} /dev/${RootPartition}
+  mkfs.${Filesystem} -f /dev/${RootPartition}
   mkfs.vfat -F 32 /dev/${RootPartition}
   
   mount /dev/$[RootPartition] /mnt
@@ -15,7 +15,7 @@ then
 
   if [[ "$Home" == "yes" ]]
   then
-    mkfs.${Filesystem} /dev/${HomePartition}
+    mkfs.${Filesystem} -f /dev/${HomePartition}
     mount --mkdir /dev/${HomePartition}
   fi
 
@@ -36,7 +36,7 @@ else
   fi
   partprobe ${Disk} # reread partition table to ensure it is correct
   
-  mkfs.${Filesystem} /dev/${Disk}2
+  mkfs.${Filesystem} -f /dev/${Disk}2
   mkfs.vfat -F 32 /dev/${Disk}1
   
   mount /dev/${Disk}2 /mnt
