@@ -5,7 +5,7 @@ export PREINSTALL_SCRIPTS_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &>
 export INSTALL_SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"/scripts/install
 export SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"/scripts
 
-chmod 777 scripts/vars.conf
+#chmod 777 scripts/vars.conf
 chmod +x scripts/preinstall/dependencies.sh
 chmod +x scripts/preinstall/disks.sh
 chmod +x scripts/preinstall/locale.sh
