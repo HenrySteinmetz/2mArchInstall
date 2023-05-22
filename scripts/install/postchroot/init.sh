@@ -1,9 +1,9 @@
 #!/bin/bash
 # post chroot
 
+
 source vars.conf
 
-./config.sh
 ./locale.sh
 ./user.sh
 ./pacman.sh
